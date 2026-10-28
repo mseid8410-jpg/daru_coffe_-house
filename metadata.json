@@ -1,0 +1,6 @@
+{
+  "name": "Daru Coffee House - 3D Ethiopian Coffee Experience",
+  "description": "Experience authentic Ethiopian coffee heritage with an interactive 3D Jebena ceremony, specialty single-origin menu, table reservations, and rich storytelling.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

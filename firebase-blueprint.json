@@ -1,0 +1,150 @@
+{
+  "entities": {
+    "Order": {
+      "title": "Order",
+      "description": "Customer coffee order placed at Daru Coffee House",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique order reference code",
+          "maxLength": 64
+        },
+        "customerName": {
+          "type": "string",
+          "description": "Customer name",
+          "maxLength": 100
+        },
+        "customerPhone": {
+          "type": "string",
+          "description": "Customer phone or WhatsApp number",
+          "maxLength": 30
+        },
+        "orderType": {
+          "type": "string",
+          "description": "Dine-in, Pick-up, or Delivery",
+          "enum": ["Dine-in", "Pick-up", "Delivery"]
+        },
+        "notesOrTable": {
+          "type": "string",
+          "description": "Table number or delivery address",
+          "maxLength": 200
+        },
+        "items": {
+          "type": "array",
+          "description": "List of coffee items ordered"
+        },
+        "totalETB": {
+          "type": "number",
+          "description": "Total order amount in Ethiopian Birr"
+        },
+        "status": {
+          "type": "string",
+          "description": "Current preparation status",
+          "enum": ["received", "brewing", "ready", "completed"]
+        },
+        "createdAt": {
+          "type": "string",
+          "description": "Timestamp when the order was submitted"
+        },
+        "userId": {
+          "type": "string",
+          "description": "Authenticated user ID if signed in",
+          "maxLength": 128
+        }
+      },
+      "required": ["customerName", "orderType", "items", "totalETB", "status", "createdAt"]
+    },
+    "CeremonyBooking": {
+      "title": "CeremonyBooking",
+      "description": "Table reservation for traditional Ethiopian coffee ceremony",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique booking reservation reference",
+          "maxLength": 64
+        },
+        "name": {
+          "type": "string",
+          "description": "Guest primary contact name",
+          "maxLength": 100
+        },
+        "phone": {
+          "type": "string",
+          "description": "Phone number",
+          "maxLength": 30
+        },
+        "email": {
+          "type": "string",
+          "description": "Contact email",
+          "maxLength": 120
+        },
+        "date": {
+          "type": "string",
+          "description": "Ceremony reservation date (YYYY-MM-DD)",
+          "maxLength": 20
+        },
+        "time": {
+          "type": "string",
+          "description": "Ceremony time slot",
+          "maxLength": 20
+        },
+        "guests": {
+          "type": "number",
+          "description": "Number of attendees"
+        },
+        "packageType": {
+          "type": "string",
+          "description": "Selected ceremony package",
+          "enum": ["classic", "royal", "masterclass"]
+        },
+        "specialRequests": {
+          "type": "string",
+          "description": "Dietary or occasion requests",
+          "maxLength": 300
+        },
+        "status": {
+          "type": "string",
+          "description": "Booking status",
+          "enum": ["confirmed", "completed", "cancelled"]
+        },
+        "createdAt": {
+          "type": "string",
+          "description": "Timestamp when booking was submitted"
+        },
+        "userId": {
+          "type": "string",
+          "description": "User ID if signed in",
+          "maxLength": 128
+        }
+      },
+      "required": ["name", "phone", "date", "time", "guests", "packageType", "status", "createdAt"]
+    },
+    "TestConnection": {
+      "title": "TestConnection",
+      "description": "Healthcheck document to verify Firestore readiness",
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string",
+          "description": "Health check status"
+        }
+      }
+    }
+  },
+  "firestore": {
+    "/orders/{orderId}": {
+      "schema": "Order",
+      "description": "Customer coffee orders"
+    },
+    "/ceremony_bookings/{bookingId}": {
+      "schema": "CeremonyBooking",
+      "description": "Coffee ceremony table bookings"
+    },
+    "/test/{docId}": {
+      "schema": "TestConnection",
+      "description": "Database connection verification"
+    }
+  }
+}
